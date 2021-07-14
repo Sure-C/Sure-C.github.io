@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>My Portfolio</title>
+
+        <style>
+        * {
+            margin:0;
+            padding:0;
+            display:border-box
+        }
+        .profile-info {
+
+        }
+        </style>
+    </head>
+    <body>
+        <div id="mainContainer2">
+        Loading ...........
+        </div>
+        <div class="profile-info" id ="mainContainer" hidden>
+            <img id="profileImage"
+            height="100"
+            width="100"
+            >
+            <h2 id="userName"></h2>
+            <h5> Slow and steady wins the race. </h5> 
+            <h4 id="followers"></h4>
+            <h4 id="following"></h4>  
+            <p><a id ="gitHubLink"></a></p>
+        </div>
+
+
+
+        <script>
+            fetch("https://api.github.com/users/sure-c")
+            .then(response => response.json())
+            .then(function(data) {
+                console.log(data)
+                document.getElementById("profileImage").src= data['avatar_url']
+                document.getElementById("userName").textContent=data['login']
+                document.getElementById("followers").textContent=data['followers']+" "+"followers"
+                document.getElementById("following").textContent=data['following']+" "+"following"
+                document.getElementById("gitHubLink").href="Clik me"+" "+data['html_url']
+                document.getElementById("mainContainer").hidden=false
+                document.getElementById("mainContainer2").hidden=true
+           
+            })
+        </script>
+    </body>
+</html>
